@@ -1,0 +1,16 @@
+.table {
+    border: 1px solid;
+    border-color: black;
+}
+
+.row {
+    border: 1px solid;
+    border-color: black;
+}
+
+.cell {
+    border: 1px solid;
+    border-color: black;
+    width: 40px;
+    height: 40px;
+}

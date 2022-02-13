@@ -1,7 +1,6 @@
-<p>grid works!</p>
-<table *ngIf="!loading" style="border: 1;">
-    <tr *ngFor="let column of columns">
-        <td *ngFor="let row of rows">Test</td>
+<table *ngIf="!loading" class="table">
+    <tr *ngFor="let column of columns" class="row">
+        <td *ngFor="let row of rows" class="cell">    </td>
     </tr>
 </table>
 <button (click)="xDimension = xDimension + 1; drawGrid();">Increase x Dimension</button>

@@ -24,8 +24,8 @@ export class GridComponent implements OnInit {
   }
 
   drawGrid() {
-    this.columns = new Array(this.xDimension);
-    this.rows = new Array(this.yDimension)
+    this.rows = new Array(this.xDimension)
+    this.columns = new Array(this.yDimension);
   }
 
 }
