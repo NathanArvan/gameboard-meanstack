@@ -5,7 +5,7 @@ const port = 3000
 
 // Connection URI
 const uri =
-  "mongodb://localhost:27017/?maxPoolSize=20&w=majority";
+  "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=false";
 
   // Create a new MongoClient
 const client = new MongoClient(uri);
