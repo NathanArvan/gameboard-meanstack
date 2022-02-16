@@ -2,6 +2,7 @@ const express = require('express');
 const { MongoClient } = require("mongodb");
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const tokenRoute = require('./routes/token.routes')
 const app = express()
 const port = 3000
 
@@ -17,7 +18,7 @@ app.use('/public', express.static('public'));
 
 
 // API Route
-app.use('/api', userRoute)
+app.use('/api', tokenRoute)
 
 
 // Connection URI
@@ -40,9 +41,9 @@ try {
 }
 }
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// })
 
 app.listen(port, () => {
     run().catch(console.dir);
