@@ -42,7 +42,7 @@ let Token = require('../models/Token');
 router.post('/create-token', upload.single('image'), (req, res, next) => {
     const url = req.protocol + '://' + req.get('host')
     const token = new Token({
-        _id: new mongoose.Types.ObjectId(),
+        // _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         image: url + '/public/' + req.file.filename
 });
