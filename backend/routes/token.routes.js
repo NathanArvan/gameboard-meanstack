@@ -41,29 +41,30 @@ let Token = require('../models/Token');
 // POST User
 router.post('/create-token', upload.single('image'), (req, res, next) => {
     const url = req.protocol + '://' + req.get('host')
+    
     const token = new Token({
-        // _id: new mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         name: req.body.name,
         image: url + '/public/' + req.file.filename
-});
-
-token.save().then(result => {
-  console.log(result);
-  res.status(201).json({
-    message: "Token registered successfully!",
-    tokenCreated: {
-      _id: result._id,
-      name: result.name,
-      avatar: result.avatar
-    }
-  })
-}).catch(err => {
-  console.log(err),
-    res.status(500).json({
-      error: err
     });
-})
-})
+
+    token.save().then(result => {
+        console.log(result);
+        res.status(201).json({
+            message: "Token registered successfully!",
+            tokenCreated: {
+            _id: result._id,
+            name: result.name,
+            avatar: result.avatar
+            }
+        })
+    }).catch(err => {
+        console.log('error:', err),
+            res.status(500).json({
+            error: err
+            });
+        })
+    })
 
 // GET All Tokens
 router.get("/", (req, res, next) => {

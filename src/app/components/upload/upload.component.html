@@ -1,5 +1,5 @@
 <label>Upload file</label>
-<input type="file" onchange="console.log(event.target.files)">
+<input type="file" (change)="onUpload($event)">
 <div *ngFor="let file of files">
     <img src="file.name">
 </div>
@@ -17,4 +17,4 @@
         </div>
       </div>
 
-<button>Upload</button>
+<button (click)="submit()">Upload</button>

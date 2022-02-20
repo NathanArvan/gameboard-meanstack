@@ -12,6 +12,7 @@ import { FileUploadService } from 'src/app/services/file-upload.service';
 export class UploadComponent implements OnInit {
 
   public files =[];
+  public testFile = new File([], 'test');
   public preview: string = '';
   public percentDone: any = 0;
   public form: FormGroup;
@@ -22,8 +23,8 @@ export class UploadComponent implements OnInit {
     public fileUploadService: FileUploadService
   ) { 
     this.form = this.formBuilder.group({
-      name: null,
-      image: null
+      name: '',
+      image: ''
     })
   }
 
@@ -35,11 +36,14 @@ export class UploadComponent implements OnInit {
   }
 
   onUpload(event: any) {
-
+    console.log(event);
     const file = (event.target).files[0];
-    this.form.patchValue({
-      image: file
-    });
+    console.log('file:', file);
+    // this.form.patchValue({
+    //   image: file
+    // });
+    this.form.controls['image'].setValue(file);
+    this.form.controls['name'].setValue(file.name);
 
     // this.form.get('image').updateValueAndValidity()
 
@@ -54,7 +58,7 @@ export class UploadComponent implements OnInit {
   submit() {
     this.fileUploadService.addToken(
       this.form.value.name,
-      this.form.value.avatar
+      this.form.value.image
     ).subscribe((event: HttpEvent<any>) => {
       switch (event.type) {
         case HttpEventType.Sent:
