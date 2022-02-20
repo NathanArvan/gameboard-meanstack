@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
+import { first } from 'rxjs';
 
 @Component({
   selector: 'app-grid',
@@ -9,6 +11,7 @@ export class GridComponent implements OnInit {
 
   @Input() public xDimension = 10; 
   @Input() public yDimension = 10; 
+  private boards = new Array();
 
   // public columns: any[] = [];
   // public rows: any[] = [];
@@ -16,11 +19,18 @@ export class GridComponent implements OnInit {
   public rows: any[] = [];
   public loading = true;
 
-  constructor() { }
+  constructor(
+    private client: HttpClient
+  ) { }
 
   ngOnInit(): void {
     this.drawGrid();
     this.loading = false;
+    this.client.get('http://localhost:3000/boards').pipe(first())
+      .subscribe(boards => {
+        console.log(boards)
+        //this.boards = boards
+      })
   }
 
   drawGrid() {
