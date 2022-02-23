@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
 import { first } from 'rxjs';
+import { BoardService } from 'src/app/services/board.service';
 
 @Component({
   selector: 'app-grid',
@@ -20,17 +21,23 @@ export class GridComponent implements OnInit {
   public loading = true;
 
   constructor(
-    private client: HttpClient
+    private client: HttpClient,
+    private boardService: BoardService
   ) { }
 
   ngOnInit(): void {
     this.drawGrid();
     this.loading = false;
-    this.client.get('http://localhost:3000/boards').pipe(first())
-      .subscribe(boards => {
-        console.log(boards)
-        //this.boards = boards
-      })
+    this.boardService.getBoards().subscribe(result => {
+      console.log(result)
+    }, error => {
+      console.log('error:', error)
+    })
+    // this.client.get('http://localhost:3000/boards').pipe(first())
+    //   .subscribe(boards => {
+    //     console.log(boards)
+    //     //this.boards = boards
+    //   })
   }
 
   drawGrid() {
