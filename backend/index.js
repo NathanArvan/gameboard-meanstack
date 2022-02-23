@@ -2,7 +2,6 @@ const express = require('express')
 const cors = require('cors');
 const mongoose = require('mongoose')
 const routes = require('./routes/routes')
-const Board = require('./models/Board')
 const port = 3000
 
 // Connection URI
@@ -18,18 +17,9 @@ mongoose.connect(uri)
     app.get('/', (req, res) => {
       res.send('Hello World!')
     })
-    app.use(express.json()) // new
+    app.use(express.json()) /
 
-    app.get('/boards', async (req, res) => {
-      console.log('hit route')
-      const boards = await Board.find();
-      console.log(boards);
-      res.send(boards)
-  })
-
-    // console.log(routes)
-    // //app.use('/api', routes)
-    // console.log(app)
+    app.use('/api', routes)
 
 
     app.listen(port, () => {

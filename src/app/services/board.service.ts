@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 })
 export class BoardService {
 
-  private url = 'http://localhost:3000/boards';
+  private url = 'http://localhost:3000/api/boards';
 
   
   private httpOptions = {
