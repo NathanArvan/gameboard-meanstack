@@ -10,3 +10,10 @@
     padding: 12px;
     
 }
+
+.button-row {
+    padding: 12px;
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+}
