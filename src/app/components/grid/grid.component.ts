@@ -17,6 +17,7 @@ export class GridComponent implements OnInit {
   public columns: any[] = [];
   public rows: any[] = [];
   public loading = true;
+  public showCreate = false;
 
   constructor(
     private client: HttpClient,
@@ -36,6 +37,11 @@ export class GridComponent implements OnInit {
   drawGrid() {
     this.rows = new Array(this.xDimension)
     this.columns = new Array(this.yDimension);
+  }
+
+  onClose(event: string) {
+    console.log(event)
+    this.showCreate = false;
   }
 
 }

@@ -1,3 +1,7 @@
+<app-create-edit *ngIf="showCreate" (closeEvent)="onClose($event)"></app-create-edit>
+<button (click)="showCreate = true"></button>
+
+
 <table *ngIf="!loading" class="table">
     <tr *ngFor="let column of columns" class="row">
         <td *ngFor="let row of rows" class="cell">    </td>

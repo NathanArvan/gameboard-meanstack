@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GridComponent } from './components/grid/grid.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { CreateEditComponent } from './components/grid/create-edit/create-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GridComponent,
-    UploadComponent
+    UploadComponent,
+    CreateEditComponent
   ],
   imports: [
     BrowserModule,
