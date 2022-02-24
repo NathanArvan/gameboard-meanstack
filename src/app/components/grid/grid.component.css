@@ -14,3 +14,18 @@
     width: 40px;
     height: 40px;
 }
+
+.board-list{
+    display: flex;
+    flex-direction: row;
+}
+
+.board-container {
+    width: 50px;
+    height: 40px;
+    margin: 16px;
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}

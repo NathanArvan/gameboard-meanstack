@@ -1,5 +1,12 @@
 <app-create-edit *ngIf="showCreate" (closeEvent)="onClose($event)"></app-create-edit>
+<div *ngFor="let board of boards" class="board-list">
+    <div class="board-container">
+        <button (click)="this.selectBoard(board)">{{board.name}}</button>
+    </div>
+</div>
 <button (click)="showCreate = true">Create Board</button>
+<button (click)="showList = true">Show Boards</button>
+
 
 
 <table *ngIf="!loading" class="table">

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Board } from '../Types/types';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class BoardService {
 
   constructor(private http: HttpClient) { }
 
-  getBoards() {
-    return this.http.get<Board>(this.url, this.httpOptions);
+  getBoards(): Observable<Board[]> {
+    return this.http.get<Board[]>(this.url, this.httpOptions);
   }
 
   createBoard(body: Board) {
