@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Board } from '../Types/types';
 
 @Injectable({
   providedIn: 'root'
@@ -18,6 +19,18 @@ export class BoardService {
   constructor(private http: HttpClient) { }
 
   getBoards() {
-    return this.http.get(this.url, this.httpOptions);
+    return this.http.get<Board>(this.url, this.httpOptions);
+  }
+
+  createBoard(body: Board) {
+    return this.http.post<Board>(this.url, body, this.httpOptions );
+  }
+
+  updateBoard(id: string, body: Board) {
+    return this.http.put<Board>(`${this.url}/${id}`, body, this.httpOptions);
+  }
+
+  deleteBoard(id: string) {
+    return this.http.delete(`${this.url}/${id}`, this.httpOptions);
   }
 }
