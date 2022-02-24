@@ -48,6 +48,11 @@ export class GridComponent implements OnInit {
     this.drawGrid();
   }
 
+  deleteBoard() {
+    this.boardService.deleteBoard(this.selectedBoard._id).pipe(first())
+      .subscribe(result => console.log(result));
+  }
+
   onClose(event: string) {
     console.log(event)
     this.showCreate = false;
