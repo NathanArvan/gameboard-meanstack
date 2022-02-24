@@ -1,8 +1,7 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs';
 import { BoardService } from 'src/app/services/board.service';
-import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-create-edit',
@@ -12,7 +11,7 @@ import { EventEmitter } from 'stream';
 export class CreateEditComponent implements OnInit {
 
   @Input() data = null;
-  @Output() closeEvent: EventEmitter = new EventEmitter();
+  @Output() closeEvent: EventEmitter<string> = new EventEmitter<string>();
 
   public boardForm = this.formBuilder.group({
     xDimension: [0, Validators.required],
