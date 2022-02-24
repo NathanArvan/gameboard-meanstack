@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { GridComponent } from './components/grid/grid.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { CreateEditComponent } from './components/grid/create-edit/create-edit.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { CreateEditComponent } from './components/grid/create-edit/create-edit.c
   imports: [
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

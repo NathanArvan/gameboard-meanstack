@@ -1,0 +1,12 @@
+.form {
+    border: 1;
+    background-color: bisque;
+    border-color: black;
+    width: 200px;
+    height: 300px;
+}
+
+.input-row {
+    padding: 12px;
+    
+}
