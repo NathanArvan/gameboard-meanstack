@@ -2,6 +2,7 @@ import { HttpEvent, HttpEventType } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { first } from 'rxjs';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 
 @Component({
@@ -17,6 +18,8 @@ export class UploadComponent implements OnInit {
   public percentDone: any = 0;
   public form: FormGroup;
   public selectedFile:any;
+  public tokens: any[] =[];
+
   constructor(
     public formBuilder: FormBuilder,
     public router: Router,
@@ -29,6 +32,7 @@ export class UploadComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getTokens();
   }
 
   onFileChanged(event: { target: { files: any[]; }; }) {
@@ -49,6 +53,15 @@ export class UploadComponent implements OnInit {
       this.preview = reader.result as string;
     }
     reader.readAsDataURL(file)
+  }
+
+  getTokens() {
+    this.fileUploadService.getTokens().pipe(first()).subscribe((response: any) => {
+      const tokens = response.tokens;
+      console.log(tokens)
+      console.log('hit subscribe')
+      this.tokens = tokens;
+    })
   }
 
   submit() {

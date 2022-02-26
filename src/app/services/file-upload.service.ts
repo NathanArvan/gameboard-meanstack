@@ -15,16 +15,16 @@ export class FileUploadService {
   constructor(private http: HttpClient) { }
 
   // Get Tokens
-  getTokens() {
+  getTokens(): Observable<any[]> {
     this.httpOptions.headers =  new HttpHeaders({
       'Content-Type':  'application/json'
     })
-    return this.http.get(this.baseURL)
+    return this.http.get<any[]>(this.baseURL)
   }
 
   // Create Tokens
   addToken(name: string, image: File): Observable<any> {
-
+    this.httpOptions.headers =  new HttpHeaders({ })
     let formData: any = new FormData();
     formData.append("name", name);
     formData.append("image", image);
