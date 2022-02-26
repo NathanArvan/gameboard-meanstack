@@ -1,16 +1,61 @@
 .table {
-    border: 1px solid;
-    border-color: black;
+    width: max-content;
+    border-collapse: collapse;
 }
 
-.row {
-    border: 1px solid;
-    border-color: black;
-}
+
 
 .cell {
-    border: 1px solid;
+    border: .05px solid;
     border-color: black;
     width: 40px;
     height: 40px;
+    padding: 0px;
+    margin: 0px;
+}
+
+.board-list{
+    flex-direction: row;
+}
+
+.board-container {
+    width: 50px;
+    height: 40px;
+    margin: 16px;
+    background-color: aqua;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+}
+
+.control-panel {
+    background-color: lightgray;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 8px;
+    margin: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: max-content;
+    align-self: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.control-button {
+    margin: 8px;
+    background-color: lightblue;
+    border-radius: 8px;
+}
+
+.grid-button {
+    margin: 8px;
+    color: white;
+    background-color: darkblue;
+    border-radius: 8px;
+}
+.page {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
 }
