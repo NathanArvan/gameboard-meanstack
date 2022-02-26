@@ -9,8 +9,12 @@ import { HttpHeaders, HttpErrorResponse, HttpClient } from '@angular/common/http
 
 export class FileUploadService {
 
-  baseURL = "http://localhost:3000/api";
-  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  baseURL = "http://localhost:3000/api/tokens";
+  private httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
+  };
 
   constructor(private http: HttpClient) { }
 
@@ -25,10 +29,7 @@ export class FileUploadService {
     formData.append("name", name);
     formData.append("image", image);
 
-    return this.http.post<Token>(`${this.baseURL}/create-token`, formData, {
-      reportProgress: true,
-      observe: 'events'
-    })
+    return this.http.post<Token>(`${this.baseURL}/create-token`, formData, this.httpOptions)
   }
 
   // Error handling 

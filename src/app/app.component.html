@@ -1,12 +1,13 @@
-
-<!-- Toolbar -->
-<div class="toolbar" role="banner">
-
-  <app-grid [xDimension]="10" [yDimension]="10"></app-grid>
-  <br> <br>
-  <app-upload></app-upload>
-
-
+<div class="container">
+  <div class="chat">
+    <h4 style="border-bottom: 1px solid;">Chat log</h4>
+    <input type="text">
+  </div>
+  <app-grid class="grid" [xDimension]="10" [yDimension]="10"></app-grid>
+  <div class="token">
+    <h4 style="border-bottom: 1px solid;">Token Upload</h4>
+    <app-upload></app-upload>
+  </div>
 </div>
 
 <router-outlet></router-outlet>

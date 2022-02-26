@@ -27,14 +27,14 @@ mongoose.connect(uri)
     app.use('/public', express.static('public'));
 
     // API Route
-    app.use('/api', tokenRoute)
+    app.use('/api/tokens', tokenRoute)
+    app.use('/api', routes)
 
     app.get('/', (req, res) => {
       res.send('Hello World!')
     })
     app.use(express.json()) /
 
-    app.use('/api', routes)
 
 
     app.listen(port, () => {

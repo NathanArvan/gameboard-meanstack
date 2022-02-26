@@ -1,17 +1,14 @@
 .table {
     width: max-content;
     border-collapse: collapse;
+    align-self: center;
 }
-
-
 
 .cell {
     border: .05px solid;
     border-color: black;
     width: 40px;
     height: 40px;
-    padding: 0px;
-    margin: 0px;
 }
 
 .board-list{
