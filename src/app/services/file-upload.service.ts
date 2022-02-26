@@ -10,25 +10,25 @@ import { HttpHeaders, HttpErrorResponse, HttpClient } from '@angular/common/http
 export class FileUploadService {
 
   baseURL = "http://localhost:3000/api/tokens";
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json'
-    })
-  };
+  private httpOptions = { headers: {}  };
 
   constructor(private http: HttpClient) { }
 
   // Get Tokens
   getTokens() {
+    this.httpOptions.headers =  new HttpHeaders({
+      'Content-Type':  'application/json'
+    })
     return this.http.get(this.baseURL)
   }
 
   // Create Tokens
   addToken(name: string, image: File): Observable<any> {
-    var formData: any = new FormData();
+
+    let formData: any = new FormData();
     formData.append("name", name);
     formData.append("image", image);
-
+    console.log(formData)
     return this.http.post<Token>(`${this.baseURL}/create-token`, formData, this.httpOptions)
   }
 

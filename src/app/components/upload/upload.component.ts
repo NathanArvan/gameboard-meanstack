@@ -39,13 +39,9 @@ export class UploadComponent implements OnInit {
     console.log(event);
     const file = (event.target).files[0];
     console.log('file:', file);
-    // this.form.patchValue({
-    //   image: file
-    // });
     this.form.controls['image'].setValue(file);
     this.form.controls['name'].setValue(file.name);
 
-    // this.form.get('image').updateValueAndValidity()
 
     // File Preview
     const reader = new FileReader();

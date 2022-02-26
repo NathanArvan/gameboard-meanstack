@@ -24,6 +24,7 @@ var upload = multer({
         fileSize: 1024 * 1024 * 5
     },
     fileFilter: (req, file, cb) => {
+        console.log('upload req', req)
         if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
             cb(null, true);
         } else {
@@ -40,6 +41,7 @@ let Token = require('../models/Token');
 
 // POST User
 router.post('/create-token', upload.single('image'), (req, res, next) => {
+    console.log(req.body)
     const url = req.protocol + '://' + req.get('host')
     
     const token = new Token({
