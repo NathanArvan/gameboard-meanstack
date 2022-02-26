@@ -1,0 +1,18 @@
+.form {
+    border: 1px solid;
+    background-color: bisque;
+    border-color: black;
+    width: 200px;
+    height: 300px;
+}
+
+.input-row {
+    padding: 12px;
+}
+
+.button-row {
+    padding: 12px;
+    display: flex;
+    flex: 1;
+    justify-content: space-around;
+}

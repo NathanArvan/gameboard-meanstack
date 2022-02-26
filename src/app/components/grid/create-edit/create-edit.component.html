@@ -1,0 +1,24 @@
+<form [formGroup]="boardForm">
+    <div class="form">
+        <div class="input-row">
+            <label for="name">Name</label>
+            <input id="name" type="text" formControlName="name">
+        </div>
+    
+        <div class="input-row">
+            <label for="xDimension">X Dimension</label>
+            <input id="xDimension" type="number" formControlName="xDimension">
+        </div>
+    
+        <div class="input-row">
+            <label for="yDimension">X Dimension</label>
+            <input id="yDimension" type="number" formControlName="yDimension">
+        </div>
+    
+        <div class="button-row">
+            <button (click)="submit()">Submit</button>
+            <button (click)="cancel()">Cancel</button>
+        </div>
+
+    </div>
+</form>

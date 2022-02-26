@@ -1,9 +1,29 @@
-<table *ngIf="!loading" class="table">
-    <tr *ngFor="let column of columns" class="row">
-        <td *ngFor="let row of rows" class="cell">    </td>
-    </tr>
-</table>
-<button (click)="xDimension = xDimension + 1; drawGrid();">Increase x Dimension</button>
+<div class="page">
+    <div class="control-panel">
+        <button class="control-button" (click)="showCreate = true">Create Board</button>
+        <button class="control-button" (click)="showList = !showList">{{showList ? 'Hide Boards' : 'Show Boards'}}</button>
+        <button class="control-button" (click)="showEdit = true" *ngIf="selectedBoard">Edit Board</button>
+        <button class="control-button" (click)="deleteBoard()" *ngIf="selectedBoard">Delete Board</button>
+        <div *ngIf="showList" class="board-list">
+            <span *ngFor="let board of boards">
+                <button class="grid-button" (click)="this.selectBoard(board)">{{board.name}}</button>
+            </span>
+        </div>
+    </div>
+    
+    <app-create-edit *ngIf="showCreate" (closeEvent)="onClose($event)"></app-create-edit>
+    <app-create-edit *ngIf="showEdit" [data]="selectedBoard" (closeEvent)="onClose($event)"></app-create-edit>
+
+    
+    
+    <table *ngIf="!loading" class="table">
+        <tr *ngFor="let column of columns" class="row">
+            <td *ngFor="let row of rows" class="cell">    </td>
+        </tr>
+    </table>
+</div>
+
+<!-- <button (click)="xDimension = xDimension + 1; drawGrid();">Increase x Dimension</button>
 <button (click)="xDimension = xDimension - 1; drawGrid();">Decrease x Dimension</button>
 <button (click)="yDimension = yDimension + 1; drawGrid();">Increase y Dimension</button>
-<button (click)="yDimension = yDimension - 1; drawGrid();">Decrease y Dimension</button>
+<button (click)="yDimension = yDimension - 1; drawGrid();">Decrease y Dimension</button> -->
