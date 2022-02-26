@@ -20,6 +20,7 @@ export class GridComponent implements OnInit {
   public rows: any[] = [];
   public loading = true;
   public showCreate = false;
+  public showEdit = false;
   public showList = false;
 
   constructor(
@@ -49,13 +50,14 @@ export class GridComponent implements OnInit {
   }
 
   deleteBoard() {
-    this.boardService.deleteBoard(this.selectedBoard._id).pipe(first())
+    this.boardService.deleteBoard(this.selectedBoard._id as string).pipe(first())
       .subscribe(result => console.log(result));
   }
 
   onClose(event: string) {
     console.log(event)
     this.showCreate = false;
+    this.showEdit = false;
   }
 
 }

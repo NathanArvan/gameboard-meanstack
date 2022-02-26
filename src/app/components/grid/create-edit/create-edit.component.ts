@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { first } from 'rxjs';
 import { BoardService } from 'src/app/services/board.service';
+import { Board } from 'src/app/Types/types';
 
 @Component({
   selector: 'app-create-edit',
@@ -10,14 +11,14 @@ import { BoardService } from 'src/app/services/board.service';
 })
 export class CreateEditComponent implements OnInit {
 
-  @Input() data = null;
+  @Input() data : Board = {
+    xDimension: 0,
+    yDimension: 0,
+    name: '',
+  };
   @Output() closeEvent: EventEmitter<string> = new EventEmitter<string>();
 
-  public boardForm = this.formBuilder.group({
-    xDimension: [0, Validators.required],
-    yDimension: [0, Validators.required],
-    name: ['', Validators.required],
-  })
+  public boardForm: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -25,6 +26,13 @@ export class CreateEditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.boardForm = this.formBuilder.group({
+      xDimension: [this.data.xDimension, Validators.required],
+      yDimension: [this.data.yDimension, Validators.required],
+      name: [this.data.name, Validators.required],
+    })
+  
+    console.log(this.boardForm)
   }
 
   submit() {
@@ -33,11 +41,18 @@ export class CreateEditComponent implements OnInit {
       xDimension: this.boardForm.controls['xDimension'].value,
       yDimension: this.boardForm.controls['yDimension'].value,
     }
-    this.boardService.createBoard(board).pipe(first())
+    if (!!this.data._id) {
+      this.boardService.updateBoard(this.data._id, board).pipe(first())
+        .subscribe(board => {
+          this.closeEvent.emit('Updated')
+        })
+    } else {
+      this.boardService.createBoard(board).pipe(first())
       .subscribe(board => {
         this.closeEvent.emit('Created!');
         console.log(board)
       })
+    }
   }
 
   cancel() {

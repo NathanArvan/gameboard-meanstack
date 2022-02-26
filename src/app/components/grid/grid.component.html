@@ -1,4 +1,5 @@
 <app-create-edit *ngIf="showCreate" (closeEvent)="onClose($event)"></app-create-edit>
+<app-create-edit *ngIf="showEdit" [data]="selectedBoard" (closeEvent)="onClose($event)"></app-create-edit>
 <div *ngFor="let board of boards" class="board-list">
     <div class="board-container">
         <button (click)="this.selectBoard(board)">{{board.name}}</button>
@@ -6,6 +7,7 @@
 </div>
 <button (click)="showCreate = true">Create Board</button>
 <button (click)="showList = true">Show Boards</button>
+<button (click)="showEdit = true" *ngIf="selectedBoard">Edit Board</button>
 <button (click)="deleteBoard()" *ngIf="selectedBoard">Delete Board</button>
 
 
