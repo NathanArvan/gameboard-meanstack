@@ -1,12 +1,10 @@
 .table {
     border: 1px solid;
     border-color: black;
+    width: max-content;
 }
 
-.row {
-    border: 1px solid;
-    border-color: black;
-}
+
 
 .cell {
     border: 1px solid;
@@ -16,7 +14,6 @@
 }
 
 .board-list{
-    display: flex;
     flex-direction: row;
 }
 
@@ -28,4 +25,36 @@
     display: flex;
     align-items: center;
     justify-items: center;
+}
+
+.control-panel {
+    background-color: lightgray;
+    border: 1px solid;
+    border-color: black;
+    border-radius: 8px;
+    margin: 16px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    width: max-content;
+    align-self: center;
+    justify-content: center;
+    justify-items: center;
+}
+
+.control-button {
+    margin: 8px;
+    background-color: lightblue;
+    border-radius: 8px;
+}
+
+.grid-button {
+    margin: 8px;
+    color: white;
+    background-color: darkblue;
+    border-radius: 8px;
+}
+.page {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
 }
