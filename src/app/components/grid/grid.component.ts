@@ -4,11 +4,20 @@ import { first } from 'rxjs';
 import { BoardService } from 'src/app/services/board.service';
 import { Board } from 'src/app/Types/types';
 
+export interface BoardToken {
+  name: string,
+  image: string,
+  x: number,
+  y: number
+}
+
+
 @Component({
   selector: 'app-grid',
   templateUrl: './grid.component.html',
   styleUrls: ['./grid.component.css']
 })
+
 export class GridComponent implements OnInit {
 
   @Input() public xDimension = 10; 
@@ -22,6 +31,11 @@ export class GridComponent implements OnInit {
   public showCreate = false;
   public showEdit = false;
   public showList = false;
+  public tokens: BoardToken[] = [
+    {name: 'Hezrou.jpeg', image: 'http://localhost:3000/public/hezrou.jpeg', x: 2 , y: 3},
+    {name: 'robed woman.jpg', image: 'http://localhost:3000/public/robed-woman.jpg', x: 4 , y: 4},
+    {name: 'Orryn Folkor.jpg', image: 'http://localhost:3000/public/orryn-folkor.jpg', x: 6 , y: 1},
+  ]
 
   constructor(
     private boardService: BoardService
@@ -58,6 +72,26 @@ export class GridComponent implements OnInit {
     console.log(event)
     this.showCreate = false;
     this.showEdit = false;
+  }
+
+  tokenInCell(x : number, y: number): boolean {
+    const test = this.tokens.findIndex(token => {
+      //console.log(token, x , y)
+      return token.x === x && token.y === y;
+    })
+    return test > -1;
+  }
+
+  getTokenImage(x : number, y: number) {
+    const token = this.tokens.find(token => {
+      return token.x === x && token.y === y;
+    })
+    if (!!token?.image) {
+      return token?.image;
+    } else {
+      return '';
+    }
+    
   }
 
 }

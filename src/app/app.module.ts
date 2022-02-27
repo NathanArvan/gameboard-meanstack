@@ -7,14 +7,16 @@ import { GridComponent } from './components/grid/grid.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { CreateEditComponent } from './components/grid/create-edit/create-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import {DragDropModule} from '@angular/cdk/drag-drop'; 
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import { TokenComponent } from './components/token/token.component'; 
 
 @NgModule({
   declarations: [
     AppComponent,
     GridComponent,
     UploadComponent,
-    CreateEditComponent
+    CreateEditComponent,
+    TokenComponent
   ],
   imports: [
     BrowserModule,

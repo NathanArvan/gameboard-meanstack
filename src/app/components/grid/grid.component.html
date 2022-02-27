@@ -17,8 +17,10 @@
     
     
     <table *ngIf="!loading" class="table">
-        <tr *ngFor="let column of columns" class="row">
-            <td *ngFor="let row of rows" class="cell">    </td>
+        <tr *ngFor="let column of columns; let i=index" class="row">
+            <td *ngFor="let row of rows; let j=index" class="cell">
+                <app-token *ngIf="tokenInCell(i, j)" [image]="getTokenImage(i, j)" [name]="'test'"></app-token>
+            </td>
         </tr>
     </table>
 </div>
