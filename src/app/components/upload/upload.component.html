@@ -1,6 +1,19 @@
-<span *ngFor="let token of tokens">
-  <img [src]="token.image" [alt]="token.name" style="width: 40px; height: 40px; padding: 12px;">
-</span>
+<div style="width: 200px; height: 200px;">
+  <!-- <div *ngFor="let token of tokens" class="example-box" cdKDrag>
+      <img [src]="token.image" [alt]="token.name" style="width: 40px; height: 40px; padding: 12px;">
+      {{token.name}}
+  </div> -->
+  <div cdkDrag class="example-box"> 
+    <img [src]="tokens[0].image" [alt]="tokens[0].name" style="width: 40px; height: 40px; padding: 12px;">
+  </div>
+  <div cdkDrag class="example-box"> 
+    <img [src]="tokens[1].image" [alt]="tokens[1].name" style="width: 40px; height: 40px; padding: 12px;">
+  </div>
+  <div cdkDrag class="example-box"> 
+    <img [src]="tokens[2].image" [alt]="tokens[2].name" style="width: 40px; height: 40px; padding: 12px;">
+  </div>
+</div>
+
 <br>
 <br>
 <label>Upload file</label>

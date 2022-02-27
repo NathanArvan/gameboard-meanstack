@@ -7,6 +7,7 @@ import { GridComponent } from './components/grid/grid.component';
 import { UploadComponent } from './components/upload/upload.component';
 import { CreateEditComponent } from './components/grid/create-edit/create-edit.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {DragDropModule} from '@angular/cdk/drag-drop'; 
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DragDropModule,
   ],
   bootstrap: [AppComponent]
 })
