@@ -13,10 +13,8 @@
     
     <app-create-edit *ngIf="showCreate" (closeEvent)="onClose($event)"></app-create-edit>
     <app-create-edit *ngIf="showEdit" [data]="selectedBoard" (closeEvent)="onClose($event)"></app-create-edit>
-
     
-    
-    <table id="table" *ngIf="!loading" class="table" >
+    <table id="table" *ngIf="!loading  && selectedBoard" class="table" >
         <tr *ngFor="let column of columns; let i=index" class="row">
             <td *ngFor="let row of rows; let j=index" class="cell"  (dragover)="allowDrop($event)" (drop)="drop($event, i, j)">
                 <div [id]="getTokenName(i,j)" draggable="true" (dragstart)="drag($event)">
@@ -25,29 +23,4 @@
             </td>
         </tr>
     </table>
-    <br>
-    <!-- <table id="table2" *ngIf="!loading" class="table"  (dragover)="allowDrop($event)" (drop)="drop($event)">
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td>
-                <div id="dragBox" style="background-color: red; width: 40px; height: 40px;" draggable="true" (dragstart)="drag($event)"></div>
-            </td>
-            <td></td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </table> -->
 </div>
-
-<!-- <button (click)="xDimension = xDimension + 1; drawGrid();">Increase x Dimension</button>
-<button (click)="xDimension = xDimension - 1; drawGrid();">Decrease x Dimension</button>
-<button (click)="yDimension = yDimension + 1; drawGrid();">Increase y Dimension</button>
-<button (click)="yDimension = yDimension - 1; drawGrid();">Decrease y Dimension</button> -->

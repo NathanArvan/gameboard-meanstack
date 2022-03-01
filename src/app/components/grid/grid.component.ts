@@ -31,11 +31,11 @@ export class GridComponent implements OnInit {
   public showCreate = false;
   public showEdit = false;
   public showList = false;
-  public tokens: BoardToken[] = [
-    {name: 'Hezrou.jpeg', image: 'http://localhost:3000/public/hezrou.jpeg', x: 2 , y: 3},
-    {name: 'robed woman.jpg', image: 'http://localhost:3000/public/robed-woman.jpg', x: 4 , y: 4},
-    {name: 'Orryn Folkor.jpg', image: 'http://localhost:3000/public/orryn-folkor.jpg', x: 6 , y: 1},
-  ]
+  // public tokens: BoardToken[] = [
+  //   {name: 'Hezrou.jpeg', image: 'http://localhost:3000/public/hezrou.jpeg', x: 2 , y: 3},
+  //   {name: 'robed woman.jpg', image: 'http://localhost:3000/public/robed-woman.jpg', x: 4 , y: 4},
+  //   {name: 'Orryn Folkor.jpg', image: 'http://localhost:3000/public/orryn-folkor.jpg', x: 6 , y: 1},
+  // ]
 
   constructor(
     private boardService: BoardService
@@ -75,7 +75,7 @@ export class GridComponent implements OnInit {
   }
 
   tokenInCell(x : number, y: number): boolean {
-    const test = this.tokens.findIndex(token => {
+    const test = this.selectedBoard.Tokens.findIndex(token => {
       //console.log(token, x , y)
       return token.x === x && token.y === y;
     })
@@ -83,7 +83,7 @@ export class GridComponent implements OnInit {
   }
 
   getTokenImage(x : number, y: number) {
-    const token = this.tokens.find(token => {
+    const token = this.selectedBoard.Tokens.find(token => {
       return token.x === x && token.y === y;
     })
     if (!!token?.image) {
@@ -94,7 +94,7 @@ export class GridComponent implements OnInit {
   }
 
   getTokenName(x : number, y: number) {
-    const token = this.tokens.find(token => {
+    const token = this.selectedBoard.Tokens.find(token => {
       return token.x === x && token.y === y;
     })
     if (!!token?.image) {
@@ -107,10 +107,27 @@ export class GridComponent implements OnInit {
   drop(event: any, i: number, j: number) {
     console.log(event);
     event.preventDefault();
-    var data = event.dataTransfer.getData("text");
-    console.log(data)
-    console.log(i, j)
-    event.target.appendChild(document.getElementById(data));
+    const name = event.dataTransfer.getData("text");
+    const src = event.dataTransfer.getData("text1");
+    console.log(name);
+    console.log(i, j);
+    const index = this.selectedBoard.Tokens.findIndex(token => token.name === name);
+    if (index > -1 ) {
+      this.selectedBoard.Tokens[index].x = i;
+      this.selectedBoard.Tokens[index].y = j;
+    } else {
+      this.selectedBoard.Tokens.push({
+        x: i,
+        y: j,
+        name: name,
+        image: src,
+      })
+    }
+    this.boardService.updateBoard(this.selectedBoard._id as string, {Tokens: this.selectedBoard.Tokens})
+      .pipe(first()).subscribe(token => {
+        this.drawGrid()
+      })
+    // event.target.appendChild(document.getElementById(data));
   }
 
   drag(event: any) {

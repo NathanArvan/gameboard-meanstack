@@ -15,6 +15,7 @@ export class CreateEditComponent implements OnInit {
     xDimension: 0,
     yDimension: 0,
     name: '',
+    Tokens: []
   };
   @Output() closeEvent: EventEmitter<string> = new EventEmitter<string>();
 

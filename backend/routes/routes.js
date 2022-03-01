@@ -11,7 +11,8 @@ router.post('/boards', async (req, res) => {
     const board = new Board({
         xDimension: req.body.xDimension,
         yDimension: req.body.yDimension,
-        name: req.body.name
+        name: req.body.name,
+		Tokens: req.body.Tokens
     })
     await board.save();
     res.send(board);
@@ -42,6 +43,10 @@ router.put("/boards/:id", async (req, res) => {
 
         if (req.body.name) {
 			board.name = req.body.name
+		}
+		
+		if (req.body.Tokens) {
+			board.Tokens = req.body.Tokens
 		}
 
 		await board.save()

@@ -4,7 +4,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { first } from 'rxjs';
 import { FileUploadService } from 'src/app/services/file-upload.service';
-import { CdkDrag } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-upload',
@@ -39,6 +38,14 @@ export class UploadComponent implements OnInit {
   onFileChanged(event: { target: { files: any[]; }; }) {
     this.selectedFile = event.target.files[0];
   }
+
+  drag(event: any) {
+    console.log(event.target);
+    console.log(event.target.id);
+    event.dataTransfer.setData("text", event.target.id);
+    event.dataTransfer.setData("text1", event.target.src);
+  }
+
 
   onUpload(event: any) {
     console.log(event);

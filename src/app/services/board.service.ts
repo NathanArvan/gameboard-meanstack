@@ -27,7 +27,7 @@ export class BoardService {
     return this.http.post<Board>(this.url, body, this.httpOptions );
   }
 
-  updateBoard(id: string, body: any) {
+  updateBoard(id: string, body: any): Observable<Board> {
     return this.http.put<Board>(`${this.url}/${id}`, body, this.httpOptions);
   }
 
