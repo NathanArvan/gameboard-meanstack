@@ -16,13 +16,35 @@
 
     
     
-    <table *ngIf="!loading" class="table">
+    <table id="table" *ngIf="!loading" class="table" >
         <tr *ngFor="let column of columns; let i=index" class="row">
-            <td *ngFor="let row of rows; let j=index" class="cell">
-                <app-token *ngIf="tokenInCell(i, j)" [image]="getTokenImage(i, j)" [name]="'test'"></app-token>
+            <td *ngFor="let row of rows; let j=index" class="cell"  (dragover)="allowDrop($event)" (drop)="drop($event, i, j)">
+                <div [id]="getTokenName(i,j)" draggable="true" (dragstart)="drag($event)">
+                    <app-token [id]="i+j" *ngIf="tokenInCell(i, j)" [image]="getTokenImage(i, j)" [name]="getTokenName(i,j)" ></app-token>
+                </div>
             </td>
         </tr>
     </table>
+    <br>
+    <!-- <table id="table2" *ngIf="!loading" class="table"  (dragover)="allowDrop($event)" (drop)="drop($event)">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <div id="dragBox" style="background-color: red; width: 40px; height: 40px;" draggable="true" (dragstart)="drag($event)"></div>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table> -->
 </div>
 
 <!-- <button (click)="xDimension = xDimension + 1; drawGrid();">Increase x Dimension</button>

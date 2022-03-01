@@ -91,7 +91,36 @@ export class GridComponent implements OnInit {
     } else {
       return '';
     }
-    
   }
 
+  getTokenName(x : number, y: number) {
+    const token = this.tokens.find(token => {
+      return token.x === x && token.y === y;
+    })
+    if (!!token?.image) {
+      return token?.name;
+    } else {
+      return '';
+    }
+  }
+
+  drop(event: any, i: number, j: number) {
+    console.log(event);
+    event.preventDefault();
+    var data = event.dataTransfer.getData("text");
+    console.log(data)
+    console.log(i, j)
+    event.target.appendChild(document.getElementById(data));
+  }
+
+  drag(event: any) {
+    console.log(event.target);
+    console.log(event.target.id);
+    event.dataTransfer.setData("text", event.target.id);
+  }
+
+  allowDrop(event: any) {
+    // console.log(event);
+    event.preventDefault();
+  }
 }
